@@ -36,9 +36,9 @@ git clone git@github.com:klefstad-teaching/ics-45c-hw7-<YourGitHubUserName>.git 
 
 ## Overview and Objectives
 
-Previous Homeworks 5 and 6 have implemented linked lists, first for type `char`, then for type Shape pointer. But what if the same linked list functionality is needed for any other type? Because C++ requires strong typing for the purpose of efficiency, these type-specific implementations of linked lists cannot be used for any other type.
+Previous Homeworks 5 and 6 have implemented linked lists, first for type `char`, then for type `Shape pointer`. But what if the same linked list functionality is needed for any other type? Because C++ requires strong typing for the purpose of efficiency, these type-specific implementations of linked lists cannot be used for any other type.
 
-Instead, to generalize functionality across different types, **templates** must be used. Templates define generic abstractions that can be ***instantiated*** with specific types appropriate for the problem at hand, where the template parameter would be the type of the data. So a `List` of a parameterized type `T`, could be instantiated with `T` as `char` for Homework 5, then instantiated with `T` as `Shape` pointer for Homework 6. All linked list functionality, such as finding the length, reversing, or traversing a list, could thus be done for any type.
+Instead, to generalize functionality across different types, **templates** must be used. Templates define generic abstractions that can be ***instantiated*** with specific types appropriate for the problem at hand, where the template parameter would be the type of the data. So a `List` of a parameterized type `T` could be instantiated with `T` as `char` for Homework 5, then instantiated with `T` as `Shape` pointer for Homework 6. All linked list functionality, such as finding the length, reversing, or traversing a list, could thus be done for any type.
 
 For Homework 7, you convert a class to a template, and also convert a function to a template. Complete the provided class `Array` of `int`, and then use it to define an `Array` template class. Then use the `Array` template to develop a 2D class `Matrix`, which will be a template as well. The ultimate goal is to have a fully tested template for both an `Array` of type `T` and for a `Matrix` of type `T` with the template functions needed to fill each one with a value returned by a ***lambda*** function, and then to instantiate both `Array` and `Matrix` template classes with `ints`, `doubles`, and `chars`. Of course, all functionality must be well tested along the development process.
 
@@ -56,9 +56,9 @@ Homework 7 provides practice implementing template classes, exceptions, and lamb
 
 > Be sure to use **exactly** the names given in these instructions and this repo for **files**, **functions**, and **classes**, because the autograder will be expecting exactly those names.
 
-## 1 Class Array of int8
+## 1 Class Array of int
 
-In the file `int_array.hpp`, complete the `Array` of type int provided in the screenshot below. Use the tests in `int_array_gtests` to make sure everything is working correctly.
+In the file `int_array.hpp`, complete the `Array` of type `int` provided in the screenshot below. Use the tests in `int_array_gtests` to make sure everything is working correctly.
 
 Note that previously, we separated the declaration and definition of functions / methods into a `.hpp` file and a `.cpp` file. In preparation for the templated `Array`, you will instead implement all functions and methods related in the header (see the various provided examples in the screenshot). There are some special rules about writing definitions in headers:
 
@@ -66,7 +66,7 @@ Note that previously, we separated the declaration and definition of functions /
 2. Templated functions and classes *must* be defined in headers.
 3. You should not do **`using namespace`** inside of a header file, because every file which includes this header is forced to use that namespace as well. So instead, use fully qualified names like `std::stringstream` or `std::ostream`.
 
-Modify the `Array` class **`operator[]()`** to throw an exception of type std::string if any index is out of bounds, containing the following error message:
+Modify the `Array` class **`operator[]()`** to throw an exception of type `std::string` if any index is out of bounds, containing the following error message:
 
 > `Exception operator[](10) Out Of Range` (but replace `10` with the value of the index that caused the exception)
 
@@ -130,11 +130,11 @@ The `Subscript` test will initially fail, because you are not yet throwing any e
 
 Small steps of incremental development and testing help to isolate and limit the number of possible issues that arise! **Taking too large a leap (with Big Bang development) leads to an overwhelming maze of issues that may be extremely difficult to diagnose and debug!**
 
->❗Note:  If asking for help with your program on EdStem Discussion, give the Step you are working on in the Subject line of the post.
+>❗Note:  If asking for help with your program on Ed Discussion, give the Step you are working on in the Subject line of the post.
 
 ### Complete class Array of int
 
-1. Start by working only on `int_array.hpp` and `int_array_gtests.cpp`. Parts of Array are already implemented, and many tests are provided.
+1. Start by working only on `int_array.hpp` and `int_array_gtests.cpp`. Parts of `Array` are already implemented, and many tests are provided.
 
 2. Start by implementing `fill`, which should set all elements of the array to a given value. Uncomment the `Fill` test to check that it works.
 
@@ -158,7 +158,7 @@ Small steps of incremental development and testing help to isolate and limit the
 
 10. You can start with just the constructor and `num_rows / num_cols` to write a simple test analogous to the length test of the array. This functionality ensures that everything compiles at least.
 
-11. Next implement **`operator[]`**. Note that **`operator[]`** should still throw an exception on out-of-bounds access, but since `Array` already does this, you do not need to repeat this in `Matrix` as well!
+11. Next implement **`operator[]`**. Note that **`operator[]`** should still throw an exception on out-of-bounds access, but since `Array` already does this, you do not need to repeat this in `Matrix`!
 
 12. Implement `fill` to set every entry of the matrix to some given value.
 
@@ -176,26 +176,6 @@ Small steps of incremental development and testing help to isolate and limit the
 
 17. Once you're confident that your code works, submit it to the autograder.
     
-## How to Submit and Grade the programs
-
-In **GradeScope** for **Homework 7**, submit these files detailed above from GitHub hw7:
-
-array.hpp
-int_array.hpp
-matrix.hpp
-standard_main.cpp
-
-> ⚠️ Be sure your #includes and using match exactly what is specified, for the autograder to run your submission with our own test programs.
-
-### Grading criteria
-
-Points are allotted for
-- Preventing memory leaks. Major points are deducted for mismatched `new` and `delete` and other memory errors.
-- Passing tests of functional correctness without crashing.
-- Printing `Array` and `Matrix` in the proper format.
-- Correctness of constructors (including copy constructor) and destructors.
-
-*We may adjust grades manually when warranted. For example, a submission that attempts to defraud the autograder points by not implementing the requirements may be given a 0.*
 
 ## Build Instructions
 
@@ -267,6 +247,19 @@ As with previous submissions, submit via `GitHub` by the following steps:
 3. `git push --set-upstream origin main`
 
 to push your changes to your private GitHub repository, and then submit `hw7` to `Gradescope`.
+
+> ⚠️ Be sure your #includes and using match exactly what is specified, for the autograder to run your submission with our own test programs.
+
+### Grading criteria
+
+Points are allotted for
+- Preventing memory leaks. Major points are deducted for mismatched `new` and `delete` and other memory errors.
+- Passing tests of functional correctness without crashing.
+- Printing `Array` and `Matrix` in the proper format.
+- Correctness of constructors (including copy constructor) and destructors.
+
+*We may adjust grades manually when warranted. For example, a submission that attempts to defraud the autograder points by not implementing the requirements may be given a 0.*
+
 
 ## Credit
 
